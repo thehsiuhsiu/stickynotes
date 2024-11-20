@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>照片便利貼</title>
+    <script src="https://cdn.jsdelivr.net/npm/docx@7.1.0/build/index.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .custom-size {
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>照 片 便 利 貼 ®</h1>
+        <div class="header-controls">
+            <div class="toggle-container">
+                <div class="labels">
+                    <span class="label" data-value="left">刑事案件</span>
+                    <span class="label" data-value="middle">交通事故</span>
+                    <span class="label" data-value="right">交通違規</span>
+                </div>
+            </div>
+            <button id="generate" class="create-btn create-btn-disabled"><i class="fas fa-download"></i> Get the file</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="imagePreview"></div>
+    </div>
+
+    <div class="add-photo-container">
+        <label for="imageInput" class="add-photo-btn">+新增照片</label>
+        <input type="file" id="imageInput" multiple accept="image/*">
+    </div>
+
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">          
+            <p>文件建立中，請稍候...</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.8.2/docx.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
