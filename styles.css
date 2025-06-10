@@ -13,7 +13,12 @@ header {
     right: 0;
     height: 45px;
     z-index: 999;
-    background-color: #ffffff;/*#f8fafc*/
+    
+     background: rgba(255, 255, 255, 0.8); /* 半透明白色 */
+    backdrop-filter: blur(18px);           /* 毛玻璃模糊 */
+    -webkit-backdrop-filter: blur(16px);   /* Safari 支援 */
+box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+   
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -487,7 +492,7 @@ h1 {
     top: 5px;
     left: 5px;
     background-color: #ffbe32;
-    color: rgb(41, 41, 41);
+    color: rgb(237, 237, 237);
     border-radius: 999px;
     /* 膠囊橢圓形 */
     min-width: 48px;
