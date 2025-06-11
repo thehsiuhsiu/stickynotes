@@ -13,12 +13,15 @@ header {
     right: 0;
     height: 45px;
     z-index: 999;
-    
-     background: rgba(255, 255, 255, 0.8); /* 半透明白色 */
-    backdrop-filter: blur(18px);           /* 毛玻璃模糊 */
-    -webkit-backdrop-filter: blur(16px);   /* Safari 支援 */
-box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-   
+
+    background: rgba(255, 255, 255, 0.8);
+    /* 半透明白色 */
+    backdrop-filter: blur(18px);
+    /* 毛玻璃模糊 */
+    -webkit-backdrop-filter: blur(16px);
+    /* Safari 支援 */
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -80,49 +83,60 @@ h1 {
     margin-left: 15px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     min-height: calc(100vh - 190px);
     box-shadow: 0 3px 5px rgba(29, 29, 29, 0.2);
 }
+
 .sidebar .form-group {
     width: 100%;
-   
+
     margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    
 }
+
+
 
 .sidebar label {
     font-size: 1rem;
     font-weight: bold;
-  padding-left: 4px; /* 新增這行，數值可依需求調整 */
+    padding-left: 4px;
+    /* 新增這行，數值可依需求調整 */
     color: #7b7b7b;
-    margin-bottom: 6px;
- 
+    margin-bottom: 8px;
+
 }
+
+
+
+
+
 
 .sidebar-input {
     width: 100%;
     padding: 8px 12px;
     border-radius: 12px;
     background: #f8f9fa;
-    border:0;
+    border: 0;
     font-size: 1rem;
-    color: #606060; 
+    color: #606060;
     font-weight: bold;
     transition: border 0.2s, box-shadow 0.2s;
     box-sizing: border-box;
-    
-   
- box-shadow: rgba(52, 52, 52, 0.2) 0px 2px 4px -2px inset,
- rgba(52, 52, 52, 0.2) 0px -2px 4px -2px inset;
+    box-shadow: rgba(52, 52, 52, 0.2) 0px 2px 4px -2px inset,
+        rgba(52, 52, 52, 0.2) 0px -2px 4px -2px inset;
 }
 
 
 .sidebar-input::placeholder {
-    color: #b1b1b1;   /* 你想要的顏色 */
-    opacity: 0.6;       /* 讓顏色不透明 */
+    color: #b1b1b1;
+    /* 你想要的顏色 */
+    opacity: 0.6;
+    /* 讓顏色不透明 */
     font-weight: normal;
 }
 
@@ -130,7 +144,7 @@ h1 {
     border: 0;
     outline: none;
     background: #ffffff;
-   box-shadow: 0 2px 8px rgba(25, 118, 210, 0.2);
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.2);
 }
 
 
@@ -140,6 +154,22 @@ h1 {
     /* 要大於 header 高度 */
     margin-left: 320px;
     /* 要大於 sidebar 寬度 */
+}
+
+.field-info-list {
+    text-align: left;
+    /* 文字靠左 */
+    list-style: disc inside;
+    margin: 0 0 16px 0;
+    padding-left: 0;
+
+
+    width: 320px;
+    /* 固定寬度，可依需求調整 */
+    margin-left: 120px;
+    /* 距離左邊一段距離，可依需求調整 */
+    margin-right: auto;
+    /* 讓區塊往左推 */
 }
 
 .toggle-container {
@@ -224,6 +254,26 @@ h1 {
     transform: translateX(198px);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .zip-controls {
     display: flex;
     align-items: center;
@@ -269,7 +319,7 @@ h1 {
     max-width: 200px;
     max-height: 200px;
     margin: 10px;
-    border: 2px solid #ddd;
+   
     border-radius: 15px;
     transition: transform 0.2s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -277,7 +327,7 @@ h1 {
 }
 
 #imagePreview img:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
 }
 
 .fab-add-photo {
@@ -477,13 +527,13 @@ h1 {
 .image-container img {
     max-width: 200px;
     max-height: 200px;
-    border: 2px solid #ddd;
+   
     border-radius: 20px;
     transition: transform 0.2s;
 }
 
 .image-container img:hover {
-    transform: scale(1.05);
+    transform: scale(1.01);
 }
 
 .image-counter {
@@ -491,8 +541,17 @@ h1 {
     position: absolute;
     top: 5px;
     left: 5px;
-    background-color: #ffbe32;
-    color: rgb(237, 237, 237);
+    /* background-color: #ffbe32;*/
+
+    color: rgb(54, 54, 54);
+    background: rgba(255, 255, 255, 0.7);
+    /* 半透明白色 */
+    backdrop-filter: blur(3px);
+    /* 毛玻璃模糊 */
+    -webkit-backdrop-filter: blur(11px);
+    /* Safari 支援 */
+
+
     border-radius: 999px;
     /* 膠囊橢圓形 */
     min-width: 48px;
@@ -509,14 +568,16 @@ h1 {
     box-sizing: border-box;
     /* 可選：加點陰影讓它更明顯 */
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
 }
 
 .delete-button {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: rgba(255, 0, 0, 0.3);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    color: rgb(154, 154, 154);
     border: none;
     border-radius: 50%;
     width: 25px;
@@ -524,7 +585,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 22px;
     cursor: pointer;
     transition: background-color 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -532,7 +593,8 @@ h1 {
 }
 
 .delete-button:hover {
-    background-color: rgba(255, 0, 0, 1);
+    background-color: rgba(255, 0, 0, 0.6);
+    color: white;
 }
 
 .modal {
@@ -551,7 +613,7 @@ h1 {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
+   
     width: 300px;
     text-align: center;
     border-radius: 5px;
@@ -656,3 +718,92 @@ footer {
 
 
 }
+
+#photoSizeSlider {
+    accent-color: #2e8fff; /* 簡單方式，支援新瀏覽器 */
+}
+/* 進階自訂 thumb 和 track 顏色 */
+#photoSizeSlider::-webkit-slider-thumb {
+    background: #1976d2;      /* 滑塊顏色 */
+    border: 2px solid #fff;
+     margin-top: -5px; /* 讓滑塊垂直置中，數值可依實際高度微調 */
+    border-radius: 50%;
+   
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+#photoSizeSlider::-webkit-slider-runnable-track {
+    background: #dceaff;      /* 軌道顏色 */
+    height: 6px;
+    border-radius: 3px;
+}
+
+.form-group-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1px;
+    /* 靠左，不要 justify-content: center; */
+}
+
+.sidebar-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #7b7b7b;
+    padding-left: 4px;
+    margin-bottom: 0;
+    line-height: 22px; /* 與 switch 高度一致 */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+    vertical-align: middle;
+     margin-top: 2px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+#dateModeLabel {
+    font-size: 14px;
+    /* 調整字體大小 */
+ 
+    font-weight: bold;
+   color: #fda400;
+   margin-bottom: 6px;
+    /* 調整底部邊距 */;
+    line-height: 22px;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 22px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #177fe6;
+}
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
