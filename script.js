@@ -306,7 +306,7 @@
             emptyStateDiv.className = 'empty-state';
             emptyStateDiv.innerHTML = `<h4 style="color:#5d5d5d;">⛔甩鍋聲明</h4>
                     <p style="font-weight: bold;">這是一個建立照片黏貼表的網頁。</p>
-                    <p style="color:#ff7d7d; font-weight: bold;">本網頁仍屬實驗甩鍋階段，不保證功能正常運作，敬請見諒。</p>
+                    <p style="color:#ff7d7d; font-weight: bold;">本網頁不保證功能正常運作，敬請見諒。</p>
                     <hr style="border: none; border-top: 2px dashed #b0b0b0;">
                     <h4 style="color:#5d5d5d;">🔍 點擊左欄下方 " + " 按鈕開始新增照片。</h4>
                     <p>新增照片後，可拖曳照片編號變更順序。</p>
