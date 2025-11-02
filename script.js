@@ -1,4 +1,38 @@
 (function () {
+    const createThumbnail = (dataUrl, maxWidth = 800, maxHeight = 800) => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                const {
+                    width,
+                    height
+                } = img;
+                let newWidth = width;
+                let newHeight = height;
+
+                if (width > height) {
+                    if (width > maxWidth) {
+                        newHeight = height * (maxWidth / width);
+                        newWidth = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        newWidth = width * (maxHeight / height);
+                        newHeight = maxHeight;
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, newWidth, newHeight);
+                resolve(canvas.toDataURL('image/jpeg', 0.8));
+            };
+            img.onerror = reject;
+            img.src = dataUrl;
+        });
+    };
     const state = {
         selectedImages: [],
         imageCounter: 0,
@@ -65,81 +99,68 @@
     const processFiles = (files) => {
         console.log("Processing files:", files.length);
         const promises = files.map(file => new Promise((resolve, reject) => {
-            // 檢查是否為 HEIC 檔案
             const isHEIC = file.type === 'image/heic' || file.type === 'image/heif' ||
                 file.name.toLowerCase().endsWith('.heic') ||
                 file.name.toLowerCase().endsWith('.heif');
 
-            if (isHEIC) {// 轉換 HEIC 檔案
-                showConversionModal()
+            const processImage = (blob, fileName) => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const dataUrl = e.target.result;
+                    const img = new Image();
+                    img.onload = () => {
+                        EXIF.getData(img, function () {
+                            const exifDate = EXIF.getTag(this, "DateTimeOriginal");
+                            const formattedDate = formatExifDate(exifDate);
+                            createThumbnail(dataUrl).then(thumbnailUrl => {
+                                resolve({
+                                    id: Date.now() + Math.random(),
+                                    data: dataUrl,
+                                    thumbnail: thumbnailUrl,
+                                    name: fileName,
+                                    size: blob.size,
+                                    width: img.width,
+                                    height: img.height,
+                                    date: formattedDate
+                                });
+                            }).catch(reject);
+                        });
+                    };
+                    img.onerror = reject;
+                    img.src = dataUrl;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            };
+
+            if (isHEIC) {
+                showConversionModal();
                 heic2any({
                     blob: file,
                     toType: "image/jpeg",
                     quality: 0.8
                 }).then(convertedBlob => {
-                    const reader = new FileReader();
-                    hideConversionModal()
-                    reader.onload = e => {
-                        const img = new Image();
-                        img.onload = () => {
-                            resolve({
-                                id: Date.now() + Math.random(),
-                                data: e.target.result,
-                                name: file.name.replace(/\.(heic|heif)$/i, '.jpg'),
-                                size: convertedBlob.size,
-                                width: img.width,
-                                height: img.height
-                            });
-                        };
-                        img.onerror = reject;
-                        img.src = e.target.result;
-                    };
-                    reader.onerror = reject;
-                    reader.readAsDataURL(convertedBlob);
+                    hideConversionModal();
+                    processImage(convertedBlob, file.name.replace(/\.(heic|heif)$/i, '.jpg'));
                 }).catch(error => {
-                    hideConversionModal()
+                    hideConversionModal();
                     console.error('HEIC conversion failed:', error);
                     alert(`HEIC 檔案 "${file.name}" 轉換失敗，請嘗試其他格式的圖片。`);
                     reject(error);
                 });
-            }
-            else {// 處理一般圖片檔案
-                const reader = new FileReader();
-                reader.onload = e => {
-                    const img = new Image();
-                    img.onload = () => {
-                        // 讀取 EXIF 拍攝日期
-                        EXIF.getData(img, function () {
-                            let exifDate = EXIF.getTag(this, "DateTimeOriginal");
-                            // exifDate 例：2024:06:11 12:34:56
-                            let formattedDate = formatExifDate(exifDate); // 這行就夠了
-                            resolve({
-                                id: Date.now() + Math.random(),
-                                data: e.target.result,
-                                name: file.name,
-                                size: file.size,
-                                width: img.width,
-                                height: img.height,
-                                date: formattedDate // 這裡就會有時:分
-                            });
-                        });
-                    };
-                    img.onerror = reject;
-                    img.src = e.target.result;
-                };
-                reader.onerror = reject;
-                reader.readAsDataURL(file);
+            } else {
+                processImage(file, file.name);
             }
         }));
+
         Promise.all(promises)
             .then(imageDataArray => {
                 console.log("Image data processed:", imageDataArray.length);
                 imageDataArray.forEach(handleImageAddition);
                 hideUploadingModal();
-
             })
             .catch(error => {
-                hideConversionModal()
+                hideConversionModal();
                 hideUploadingModal();
                 console.error('Error processing images:', error);
                 alert('處理圖片時發生錯誤，請重試。');
@@ -189,7 +210,7 @@
         imageContainer.draggable = true;
 
         const img = document.createElement('img');
-        img.src = imageData.data;
+        img.src = imageData.thumbnail;
         img.alt = imageData.name;
         imageContainer.appendChild(img);
 
@@ -507,7 +528,7 @@
         return createImageTables(docx, images, formData, isAutoDate, manualDate);
     };
 
-    //刑案照片內容 
+    //刑案照片內容
     const createImageTables = (docx, images, formData, isAutoDate, manualDate) => {
         const tables = [];
         for (let i = 0; i < images.length; i += 2) {
@@ -1228,5 +1249,3 @@
 
     };
 })(); // IIFE 結束
-
-
