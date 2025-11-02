@@ -33,6 +33,40 @@
             img.src = dataUrl;
         });
     };
+
+    const resizeImageForDoc = (dataUrl, maxDimension = 1200) => {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                const {
+                    width,
+                    height
+                } = img;
+                let newWidth = width;
+                let newHeight = height;
+
+                if (width > maxDimension || height > maxDimension) {
+                    if (width > height) {
+                        newWidth = maxDimension;
+                        newHeight = height * (maxDimension / width);
+                    } else {
+                        newHeight = maxDimension;
+                        newWidth = width * (maxDimension / height);
+                    }
+                }
+
+                const canvas = document.createElement('canvas');
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, newWidth, newHeight);
+                resolve(canvas.toDataURL('image/jpeg', 0.9));
+            };
+            img.onerror = reject;
+            img.src = dataUrl;
+        });
+    };
+
     const state = {
         selectedImages: [],
         imageCounter: 0,
@@ -404,28 +438,33 @@
         }
         showLoadingModal();
 
-        // 用 setTimeout 讓 modal 先顯示
-        setTimeout(async () => {
-            try {
-                const docx = window.docx;
-                const caseReason = document.getElementById('zipPrefix').value;
-                const caseUnit = document.getElementById('caseUni').value;
-                const caseAddress = document.getElementById('caseAddress').value;
-                const caseDate = document.getElementById('caseDate').value;
-                const caseNumber = document.getElementById('caseNumber').value;
+        try {
+            const resizedImages = await Promise.all(
+                state.selectedImages.map(async (image) => {
+                    const resizedData = await resizeImageForDoc(image.data);
+                    return { ...image,
+                        data: resizedData
+                    };
+                })
+            );
 
-                const doc = createDocument(docx, state.selectedFormat, {
-                    caseReason,
-                    caseUnit,
-                    caseAddress,
-                    caseDate,
-                    caseNumber
-                });
+            const docx = window.docx;
+            const caseReason = document.getElementById('zipPrefix').value;
+            const caseUnit = document.getElementById('caseUni').value;
+            const caseAddress = document.getElementById('caseAddress').value;
+            const caseDate = document.getElementById('caseDate').value;
+            const caseNumber = document.getElementById('caseNumber').value;
 
-                // 用 await 等待產生 blob
-                const blob = await docx.Packer.toBlob(doc);
+            const doc = createDocument(docx, state.selectedFormat, {
+                caseReason,
+                caseUnit,
+                caseAddress,
+                caseDate,
+                caseNumber,
+            }, resizedImages); // Pass resized images to createDocument
 
-                hideLoadingModal();
+            const blob = await docx.Packer.toBlob(doc);
+            hideLoadingModal();
 
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
@@ -443,11 +482,10 @@
                 console.error('Error in document generation:', error);
                 alert('文件生成過程中出錯，請查看控制台以獲取詳細信息。');
             }
-        }, 0);
     };
 
     // 主要的文檔創建函數
-    const createDocument = (docx, format, formData) => {
+    const createDocument = (docx, format, formData, images) => {
         const isAutoDate = document.getElementById('dateModeSwitch').checked;
         const manualDate = document.getElementById('caseDate').value;
         let title, createContent;
@@ -500,7 +538,7 @@
                     ],
                 }),
             },
-            children: createContent(docx, state.selectedImages, formData, isAutoDate, manualDate),
+            children: createContent(docx, images, formData, isAutoDate, manualDate),
         }];
 
         // 只為非交通違規文件添加頁腳
