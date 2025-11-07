@@ -1286,4 +1286,24 @@
         }
 
     };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const resizeWarningModal = document.getElementById('resize-warning');
+
+        if (!resizeWarningModal) {
+            console.error('Resize warning modal not found!');
+            return;
+        }
+
+        const checkWindowSize = () => {
+            if (window.innerWidth < 1500 || window.innerHeight < 850) {
+                resizeWarningModal.style.display = 'flex';
+            } else {
+                resizeWarningModal.style.display = 'none';
+            }
+        };
+
+        window.addEventListener('resize', checkWindowSize);
+        checkWindowSize(); // Initial check
+    });
 })(); // IIFE 結束
