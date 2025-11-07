@@ -850,5 +850,18 @@ input:checked + .slider:before {
     font-weight: bold;
     color: #3a3a3a;
     line-height: 1.6;
+     /* 添加以下屬性來阻止文字選取 */
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
