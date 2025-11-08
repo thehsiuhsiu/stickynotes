@@ -793,13 +793,17 @@ footer {
 #dateModeLabel {
     font-size: 14px;
     /* 調整字體大小 */
- 
     font-weight: bold;
    color: #fda400;
    margin-bottom: 6px;
     /* 調整底部邊距 */;
     line-height: 22px;
 }
+
+
+
+
+
 .slider {
     position: absolute;
     cursor: pointer;

@@ -587,6 +587,7 @@
     //刑案照片內容 案由 單位
     const createHeaderTable = (docx, formData) => {
         return new docx.Table({
+            layout: docx.TableLayoutType.FIXED,
             width: {
                 size: 100,
                 type: docx.WidthType.PERCENTAGE,
@@ -628,7 +629,7 @@
 
     //刑案照片內容
     const createImageTable = (docx, image, index, formData, isAutoDate, manualDate) => {
-        const dateToShow = isAutoDate ? (image.date || "") : manualDate;
+        const dateToShow = isAutoDate ? (image.date || manualDate) : manualDate;
         const imageRatio = image.width / image.height;
         let imageHeight = 350;  // 固定高度為350
         let imageWidth = imageHeight * imageRatio; //寬度=高度*比例
@@ -640,6 +641,7 @@
 
         return [
             new docx.Table({
+                layout: docx.TableLayoutType.FIXED,
                 width: {
                     size: 100,
                     type: docx.WidthType.PERCENTAGE,
@@ -756,7 +758,7 @@
 
     // 交通事故圖片表格
     const createTrafficAccidentImageTable = (docx, image, index, formData, isAutoDate, manualDate) => {
-        const dateToShow = isAutoDate ? (image.date || "") : manualDate;
+        const dateToShow = isAutoDate ? (image.date || manualDate) : manualDate;
         const imageRatio = image.width / image.height;
         let imageHeight = 350;  // 固定高度為350
         let imageWidth = imageHeight * imageRatio; //寬度=高度*比例
@@ -767,6 +769,7 @@
         }
 
         return new docx.Table({
+            layout: docx.TableLayoutType.FIXED,
             width: {
                 size: 100,
                 type: docx.WidthType.PERCENTAGE,
@@ -870,6 +873,7 @@
     // 交通違規表頭表格
     const createTrafficViolationHeaderTable = (docx, formData) => {
         return new docx.Table({
+            layout: docx.TableLayoutType.FIXED,
             width: {
                 size: 100,
                 type: docx.WidthType.PERCENTAGE,
@@ -914,7 +918,7 @@
 
     // 交通違規圖片表格
     const createTrafficViolationImageTable = (docx, image, index, formData, isAutoDate, manualDate) => {
-        const dateToShow = isAutoDate ? (image.date || "") : manualDate;
+        const dateToShow = isAutoDate ? (image.date || manualDate) : manualDate;
         const imageRatio = image.width / image.height;
         let imageHeight = 350;  // 固定高度為350
         let imageWidth = imageHeight * imageRatio; //寬度=高度*比例
@@ -926,6 +930,7 @@
 
         return [
             new docx.Table({
+                layout: docx.TableLayoutType.FIXED,
                 width: {
                     size: 100,
                     type: docx.WidthType.PERCENTAGE,
@@ -1195,12 +1200,6 @@
             if (dateSwitch.checked) {
                 dateInput.disabled = true;
                 dateModeLabel.textContent = 'Auto-fill EXIF';
-                // 這裡可以自動帶入第一張照片的 EXIF 日期
-                if (window.firstExifDate) {
-                    dateInput.value = window.firstExifDate;
-                } else {
-                    dateInput.value = '';
-                }
             } else {
                 dateInput.disabled = false;
                dateModeLabel.textContent = '';
