@@ -1295,7 +1295,7 @@
         }
 
         const checkWindowSize = () => {
-            if (window.innerWidth < 1500 || window.innerHeight < 850) {
+            if (window.innerWidth < 1100 || window.innerHeight < 820) {
                 resizeWarningModal.style.display = 'flex';
             } else {
                 resizeWarningModal.style.display = 'none';

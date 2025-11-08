@@ -1,9 +1,60 @@
+:root {
+    --bg-primary: #f8fafc;
+    --text-primary: #333;
+    --header-bg: rgba(255, 255, 255, 0.8);
+    --header-title: #2f2f2f;
+    --sidebar-bg: #ffffff;
+    --sidebar-label: #7b7b7b;
+    --input-bg: #f8f9fa;
+    --input-bg-focus: #ffffff;
+    --input-text: #606060;
+    --input-placeholder: #b1b1b1;
+    --input-focus-shadow: rgba(25, 118, 210, 0.2);
+    --container-bg: #edf2fa;
+    --toggle-bg: #edf2fa;
+    --toggle-slider: #3d87e9;
+    --toggle-text: #a5a5a5;
+    --toggle-text-active: #ffffff;
+    --btn-enabled-bg: #ffbe32;
+    --btn-enabled-text: #fafcff;
+    --btn-hover-bg: #ffc23e;
+    --btn-disabled-bg: #e7edf4;
+    --btn-disabled-text: #a6a6a6;
+    --downzip-btn-text: #2179fd;
+    --downzip-btn-hover-bg: #eeeeee;
+    --link-primary: #177fe6;
+    --image-shadow: rgba(0, 0, 0, 0.3);
+    --shadow-primary: rgba(29, 29, 29, 0.2);
+    --shadow-secondary: rgba(0, 0, 0, 0.1);
+    --modal-backdrop: rgba(0, 0, 0, 0.4);
+    --modal-content-bg: #fefefe;
+    --modal-content-text: #333;
+    --loader-track: #f3f3f3;
+    --loader-fill: #3498db;
+    --danger-text: #ff0000;
+    --tooltip-bg: #8a8a8a;
+    --tooltip-text: #fff;
+    --image-counter-bg: rgba(255, 255, 255, 0.7);
+    --image-counter-text: rgb(54, 54, 54);
+    --delete-btn-bg: rgba(255, 255, 255, 0.5);
+    --delete-btn-text: rgb(154, 154, 154);
+    --delete-btn-hover-bg: rgba(255, 0, 0, 0.6);
+    --delete-btn-hover-text: white;
+    --switch-bg: #ccc;
+    --switch-bg-checked: #177fe6;
+    --slider-thumb: white;
+    --date-mode-label: #fda400;
+    --resize-warning-backdrop: rgba(0, 0, 0, 0.5);
+    --resize-warning-bg: rgba(255, 255, 255, 0.8);
+    --resize-warning-text: #3a3a3a;
+}
+
 body {
     font-family: 'Noto Sans TC', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8fafc;
-    color: #333;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 header {
@@ -14,19 +65,18 @@ header {
     height: 45px;
     z-index: 999;
 
-    background: rgba(255, 255, 255, 0.8);
+    background: var(--header-bg);
     /* 半透明白色 */
     backdrop-filter: blur(18px);
     /* 毛玻璃模糊 */
     -webkit-backdrop-filter: blur(16px);
     /* Safari 支援 */
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
 
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 1px 2px #dddddd;
     /* 添加這行來防止內容換行 */
     flex-wrap: nowrap;
 }
@@ -34,7 +84,7 @@ header {
 h1 {
     font-size: 24px;
     font-weight: bold;
-    color: #2f2f2f;
+    color: var(--header-title);
     margin: 0;
     /* 添加以下屬性來阻止文字選取 */
     -webkit-touch-callout: none;
@@ -49,6 +99,61 @@ h1 {
     /* Internet Explorer/Edge */
     user-select: none;
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #121212;
+        --text-primary: #e0e0e0;
+        --header-bg: rgba(25, 25, 25, 0.8);
+        --header-title: #ffffff;
+        --sidebar-bg: #1e1e1e;
+        --sidebar-label: #e5e5e5;
+        --input-bg: #2c2c2c;
+        --input-bg-focus: #383838;
+        --input-text: #e0e0e0;
+        --input-placeholder: #6b6b6b;
+        --input-focus-shadow: rgba(0, 0, 0, 0.3);
+        --container-bg: #1e1e1e;
+        --toggle-bg: #2c2c2c;
+        --toggle-slider: #3d87e9;
+        --toggle-text: #a0a0a0;
+        --toggle-text-active: #ffffff;
+        --btn-enabled-bg: #ffbe32;
+        --btn-enabled-text: #ffffff;
+        --btn-hover-bg: #eba103;
+        --btn-disabled-bg: #2c2c2c;
+        --btn-disabled-text: #6b6b6b;
+        --downzip-btn-text: #2179fd;
+        --downzip-btn-hover-bg: #2c2c2c;
+        --downzip-btn-enabled-bg: #474747;
+        
+        --link-primary: #177fe6;
+        --image-shadow: rgba(0, 0, 0, 0.7);
+        --shadow-primary: rgba(0, 0, 0, 0.5);
+        --shadow-secondary: rgba(0, 0, 0, 0.3);
+        --modal-backdrop: rgba(0, 0, 0, 0.6);
+        --modal-content-bg: #2c2c2c;
+        --modal-content-text: #e0e0e0;
+        --loader-track: #424242;
+        --loader-fill: #5a9bff;
+        --danger-text: #ff6b6b;
+        --tooltip-bg: #424242;
+        --tooltip-text: #e0e0e0;
+        --image-counter-bg: rgba(18, 18, 18, 0.7);
+        --image-counter-text: #e0e0e0;
+        --delete-btn-bg: rgba(44, 44, 44, 0.5);
+        --delete-btn-text: #a0a0a0;
+        --delete-btn-hover-bg: rgba(255, 23, 23, 0.6);
+        --delete-btn-hover-text: #ffffff;
+        --switch-bg: #424242;
+        --switch-bg-checked: #5a9bff;
+        --slider-thumb: #e0e0e0;
+        --date-mode-label: #fda400;
+        --resize-warning-backdrop: rgba(0, 0, 0, 0.7);
+        --resize-warning-bg: rgba(44, 44, 44, 0.8);
+        --resize-warning-text: #e0e0e0;
+    }
 }
 
 .header-controls {
@@ -74,7 +179,7 @@ h1 {
     left: 0;
     width: 285px;
     height: 500px;
-    background: #ffffff;
+    background: var(--sidebar-bg);
     padding: 16px 12px;
     border-radius: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -85,7 +190,7 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
     min-height: calc(100vh - 190px);
-    box-shadow: 0 3px 5px rgba(29, 29, 29, 0.2);
+    box-shadow: 0 3px 5px var(--shadow-primary);
 }
 
 .sidebar .form-group {
@@ -106,7 +211,7 @@ h1 {
     font-weight: bold;
     padding-left: 4px;
     /* 新增這行，數值可依需求調整 */
-    color: #7b7b7b;
+    color: var(--sidebar-label);
     margin-bottom: 8px;
 
 }
@@ -120,10 +225,10 @@ h1 {
     width: 100%;
     padding: 8px 12px;
     border-radius: 12px;
-    background: #f8f9fa;
+    background: var(--input-bg);
     border: 0;
     font-size: 1rem;
-    color: #606060;
+    color: var(--input-text);
     font-weight: bold;
     transition: border 0.2s, box-shadow 0.2s;
     box-sizing: border-box;
@@ -133,7 +238,7 @@ h1 {
 
 
 .sidebar-input::placeholder {
-    color: #b1b1b1;
+    color: var(--input-placeholder);
     /* 你想要的顏色 */
     opacity: 0.6;
     /* 讓顏色不透明 */
@@ -143,8 +248,8 @@ h1 {
 .sidebar-input:focus {
     border: 0;
     outline: none;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.2);
+    background: var(--input-bg-focus);
+    box-shadow: 0 2px 8px var(--input-focus-shadow);
 }
 
 
@@ -175,7 +280,7 @@ h1 {
 .toggle-container {
     /*toggle大容器*/
     display: flex;
-    background-color: #edf2fa;
+    background-color: var(--toggle-bg);
     border-radius: 30px;
     position: relative;
     width: 300px;
@@ -187,7 +292,7 @@ h1 {
     /*padding: 2px; /* 添加內邊距 */
     box-sizing: border-box;
     /* 確保padding不會增加總寬度 */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px var(--shadow-secondary);
     /* 添加陰影 */
 
 }
@@ -217,14 +322,14 @@ h1 {
     cursor: pointer;
     transition: color 0.3s, text-shadow 0.3s;
     font-size: 18px;
-    color: #a5a5a5;
+    color: var(--toggle-text);
     /*font-weight: bold;*/
     z-index: 1;
     user-select: none;
 }
 
 .label.active {
-    color: #ffffff;
+    color: var(--toggle-text-active);
     /*text-shadow: 0 0 5px rgba(255,255,255,0.5);*/
 }
 
@@ -235,7 +340,7 @@ h1 {
     left: 2px;
     width: 98px;
     height: 36px;
-    background-color: #3d87e9;
+    background-color: var(--toggle-slider);
     border-radius: 28px;
     transition: transform 0.3s ease;
 
@@ -254,26 +359,6 @@ h1 {
     transform: translateX(198px);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .zip-controls {
     display: flex;
     align-items: center;
@@ -287,7 +372,7 @@ h1 {
     font-size: 1rem;
     margin-right: 4px;
     margin-bottom: 1px;
-    color: #ff0000;
+    color: var(--danger-text);
 }
 
 .container {
@@ -295,10 +380,10 @@ h1 {
     /*max-width: 1200px;*/
     margin: 20px 20px;
     padding: 10px;
-    background: #edf2fa;
+    background: var(--container-bg);
     border-radius: 20px;
     min-height: calc(100vh - 180px);
-    box-shadow: 0 3px 5px rgba(29, 29, 29, 0.2);
+    box-shadow: 0 3px 5px var(--shadow-primary);
     /* 添加陰影 */
 }
 
@@ -322,7 +407,7 @@ h1 {
    
     border-radius: 15px;
     transition: transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px var(--image-shadow);
     /* 添加陰影 */
 }
 
@@ -337,7 +422,7 @@ h1 {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: #177fe6;
+    background: var(--link-primary);
     color: #fff;
     border: none;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
@@ -375,25 +460,25 @@ h1 {
     /* 添加 box-shadow 過渡 */
     white-space: nowrap;
     flex-shrink: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-secondary);
     /* 添加陰影 */
 }
 
 .create-btn-disabled {
     /*未未觸發"下載"按鈕顯示效果*/
-    background-color: #e7edf4;
-    color: #a6a6a6;
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
 }
 
 .create-btn-enabled {
     /*觸發"下載"按鈕顯示效果*/
-    background-color: #ffbe32;
-    color: #fafcff;
+    background-color: var(--btn-enabled-bg);
+    color: var(--btn-enabled-text);
 }
 
 .create-btn-enabled:hover {
     /*滑鼠靠近"下載"按鈕顯示效果*/
-    background-color: #ffc23e;
+    background-color: var(--btn-hover-bg);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     /* 改變陰影效果 */
 }
@@ -413,26 +498,27 @@ h1 {
     /* 添加 box-shadow 過渡 */
     white-space: nowrap;
     flex-shrink: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-secondary);
     /* 添加陰影 */
 }
 
 .downzip-btn-disabled {
     /*未未觸發"下載"按鈕顯示效果*/
-    background-color: #e7edf4;
-    color: #a6a6a6;
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
 }
 
 .downzip-btn-enabled {
-    /*觸發"下載"按鈕顯示效果*/
-    /* background-color: #ffbe32;*/
-    color: #2179fd;
+    /*觸發"下載"按鈕顯示效果
+    background-color: #858585;*/
+    background-color: var(--downzip-btn-enabled-bg);
+    color: var(--downzip-btn-text);
 }
 
 .downzip-btn-enabled:hover {
     /*滑鼠靠近"下載"按鈕顯示效果*/
-    background-color: #e9eef3;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--downzip-btn-hover-bg);
+    box-shadow: 0 4px 8px var(--shadow-secondary);
     /* 改變陰影效果 */
 }
 
@@ -441,8 +527,8 @@ h1 {
 .tooltip-text {
     visibility: hidden;
     width: 80px;
-    background-color: #8a8a8a;
-    color: #fff;
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-text);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -482,7 +568,7 @@ h1 {
     /* 箭頭在上方 */
     left: 50%;
     margin-left: -5px;
-    border-color: transparent transparent #8a8a8a transparent;
+    border-color: transparent transparent var(--tooltip-bg) transparent;
     /* 箭頭朝上 */
 }
 
@@ -490,7 +576,7 @@ h1 {
     bottom: 100%;
     left: 50%;
     margin-left: -5px;
-    border-color: transparent transparent #8a8a8a transparent;
+    border-color: transparent transparent var(--tooltip-bg) transparent;
 }
 
 /* 當滑鼠移到 .my-button 上時，顯示 .tooltip-text */
@@ -543,8 +629,8 @@ h1 {
     left: 5px;
     /* background-color: #ffbe32;*/
 
-    color: rgb(54, 54, 54);
-    background: rgba(255, 255, 255, 0.7);
+    color: var(--image-counter-text);
+    background: var(--image-counter-bg);
     /* 半透明白色 */
     backdrop-filter: blur(3px);
     /* 毛玻璃模糊 */
@@ -575,9 +661,9 @@ h1 {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: var(--delete-btn-bg);
     backdrop-filter: blur(2px);
-    color: rgb(154, 154, 154);
+    color: var(--delete-btn-text);
     border: none;
     border-radius: 50%;
     width: 25px;
@@ -588,13 +674,13 @@ h1 {
     font-size: 22px;
     cursor: pointer;
     transition: background-color 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-secondary);
     /* 添加陰影 */
 }
 
 .delete-button:hover {
-    background-color: rgba(255, 0, 0, 0.6);
-    color: white;
+    background-color: var(--delete-btn-hover-bg);
+    color: var(--delete-btn-hover-text);
 }
 
 .modal {
@@ -606,30 +692,30 @@ h1 {
     width: 100%;
     height: 100%;
  
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: var(--modal-backdrop);
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: var(--modal-content-bg);
     margin: 15% auto;
     padding: 20px;
    
     width: 300px;
     text-align: center;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-secondary);
     /* 添加陰影 */
 }
 
 .modal-content p {
     margin: 0;
     font-size: 18px;
-    color: #333;
+    color: var(--modal-content-text);
 }
 
 .loader {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
+    border: 5px solid var(--loader-track);
+    border-top: 5px solid var(--loader-fill);
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -707,7 +793,7 @@ h1 {
         background: #e7edf4;
         border-radius: 20px;
         min-height: calc(100vh - 180px);
-        box-shadow: 0 4px 8px rgba(29, 29, 29, 0.2);
+        box-shadow: 0 4px 8px var(--shadow-primary);
         /* 添加陰影 */
     }
 
@@ -769,7 +855,7 @@ footer {
 .sidebar-label {
     font-size: 1rem;
     font-weight: bold;
-    color: #7b7b7b;
+    color: var(--sidebar-label);
     padding-left: 4px;
     margin-bottom: 0;
     line-height: 22px; /* 與 switch 高度一致 */
@@ -794,21 +880,17 @@ footer {
     font-size: 14px;
     /* 調整字體大小 */
     font-weight: bold;
-   color: #fda400;
+   color: var(--date-mode-label);
    margin-bottom: 6px;
     /* 調整底部邊距 */;
     line-height: 22px;
 }
 
-
-
-
-
 .slider {
     position: absolute;
     cursor: pointer;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #ccc;
+    background-color: var(--switch-bg);
     transition: .3s;
     border-radius: 22px;
 }
@@ -819,12 +901,12 @@ footer {
     width: 12px;
     left: 2px;
     bottom: 2px;
-    background-color: white;
+    background-color: var(--slider-thumb);
     transition: .3s;
     border-radius: 50%;
 }
 input:checked + .slider {
-    background-color: #177fe6;
+    background-color: var(--switch-bg-checked);
 }
 input:checked + .slider:before {
     transform: translateX(18px);
@@ -834,7 +916,7 @@ input:checked + .slider:before {
 #resize-warning {
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5); /* Frosted glass effect */
+    background: var(--resize-warning-backdrop); /* Frosted glass effect */
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
@@ -842,7 +924,7 @@ input:checked + .slider:before {
 #resize-warning .modal-content {
     width: auto;
     max-width: 300px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--resize-warning-bg);
     border-radius: 16px;
     padding: 24px 32px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
@@ -852,7 +934,7 @@ input:checked + .slider:before {
     margin: 0;
     font-size: 1.1rem;
     font-weight: bold;
-    color: #3a3a3a;
+    color: var(--resize-warning-text);
     line-height: 1.6;
      /* 添加以下屬性來阻止文字選取 */
     -webkit-touch-callout: none;
@@ -868,4 +950,3 @@ input:checked + .slider:before {
     user-select: none;
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
-
