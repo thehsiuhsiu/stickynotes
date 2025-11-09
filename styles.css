@@ -47,6 +47,8 @@
     --resize-warning-backdrop: rgba(0, 0, 0, 0.5);
     --resize-warning-bg: rgba(255, 255, 255, 0.8);
     --resize-warning-text: #3a3a3a;
+    --disclaimer-text-primary: #5d5d5d;
+    --disclaimer-text-secondary: #ff4646;
 }
 
 body {
@@ -101,6 +103,14 @@ h1 {
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+.disclaimer-primary {
+    color: var(--disclaimer-text-primary);
+}
+
+.disclaimer-secondary {
+    color: var(--disclaimer-text-secondary);
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --bg-primary: #121212;
@@ -153,6 +163,8 @@ h1 {
         --resize-warning-backdrop: rgba(0, 0, 0, 0.7);
         --resize-warning-bg: rgba(44, 44, 44, 0.8);
         --resize-warning-text: #e0e0e0;
+        --disclaimer-text-primary: #ebebeb;
+        --disclaimer-text-secondary: #ff3737;
     }
 }
 
@@ -391,7 +403,8 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    color: #afafaf;
+    color: #a3a3a3;   /*甩鍋聲明內文字顏色*/
+
     font-size: 13px;
     line-height: 18px;
     /*行高*/
