@@ -1200,9 +1200,11 @@
             if (dateSwitch.checked) {
                 dateInput.disabled = true;
                 dateModeLabel.textContent = 'Auto-fill EXIF';
+                dateModeLabel.classList.remove('disabled');
             } else {
                 dateInput.disabled = false;
-               dateModeLabel.textContent = '';
+                dateModeLabel.textContent = 'Auto-fill EXIF';
+                dateModeLabel.classList.add('disabled');
             }
         }
 

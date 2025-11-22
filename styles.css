@@ -10,7 +10,7 @@
     --input-text: #606060;
     --input-placeholder: #b1b1b1;
     --input-focus-shadow: rgba(25, 118, 210, 0.2);
-    --container-bg: #edf2fa;
+    --container-bg: #ffffff;
     --toggle-bg: #edf2fa;
     --toggle-slider: #3d87e9;
     --toggle-text: #a5a5a5;
@@ -49,6 +49,8 @@
     --resize-warning-text: #3a3a3a;
     --disclaimer-text-primary: #5d5d5d;
     --disclaimer-text-secondary: #ff4646;
+    --scrollbar-thumb: rgba(0, 0, 0, 0.3);
+    --scrollbar-thumb-hover: rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -165,6 +167,8 @@ h1 {
         --resize-warning-text: #e0e0e0;
         --disclaimer-text-primary: #ebebeb;
         --disclaimer-text-secondary: #ff3737;
+        --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+        --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4);
     }
 }
 
@@ -190,7 +194,7 @@ h1 {
     top: 90px;
     left: 0;
     width: 285px;
-    height: 500px;
+    height:570px;
     background: var(--sidebar-bg);
     padding: 16px 12px;
     border-radius: 20px;
@@ -201,7 +205,8 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    min-height: calc(100vh - 190px);
+     min-height: calc(100vh - 185px);
+    overflow-y: auto;
     box-shadow: 0 3px 5px var(--shadow-primary);
 }
 
@@ -394,9 +399,38 @@ h1 {
     padding: 10px;
     background: var(--container-bg);
     border-radius: 20px;
-    min-height: calc(100vh - 180px);
+    height: calc(100vh - 172px);
+    overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: 0 3px 5px var(--shadow-primary);
     /* 添加陰影 */
+    scrollbar-gutter: stable;
+}
+
+/* 自訂滾動條 */
+.container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+    background-clip: padding-box;
 }
 
 #imagePreview {
@@ -899,6 +933,11 @@ footer {
     line-height: 22px;
 }
 
+#dateModeLabel.disabled {
+    color: #a0a0a0;
+    opacity: 0.6;
+}
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -963,3 +1002,5 @@ input:checked + .slider:before {
     user-select: none;
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
+
+
